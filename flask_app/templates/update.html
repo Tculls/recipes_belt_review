@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>Update Recipe</title>
+</head>
+
+<body>
+    <div id="container">
+        <div class="bg-dark text-warning p-5 rounded">
+        <h1>Update Existing Recipe</h1>
+        {% with messages = get_flashed_messages(category_filter=['create_recipe']) %}
+        {% if messages %}
+        {% for message in messages %}
+        <p>{{message}}</p>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <form action="/recipe/{{recipe}}/update" method="post">
+            <div class="form-group row">
+                <label for="name">Name:</label>
+                <input type="text" name="name" value="{{info.name}}">
+                <label for="description">Description</label>
+                <input type="text" name="description" value="{{info.description}}">
+                <label for="instructions">Instructions</label>
+                <input type="text" name="instructions" value="{{info.instructions}}">
+                <label for="date">Original Creation Date</label>
+                <input type="date" name="date_made"
+                min="1800-01-01" max="2022-5-01" value="{{info.date_made}}">
+                <label for="under_30">Under 30 Minutes?</label>
+                <input type="radio" name="under_30" value="1" checked>Yes</input>
+                <input type="radio" name="under_30" value="0">No</input>
+                <input type="submit" value="Create">
+        </form>
+
+        <a href="/dashboard">Return to Dashboard</a>
+    </div>
+    </div>
+</body>
+
+</html>
